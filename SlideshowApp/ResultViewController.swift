@@ -12,10 +12,18 @@ class ResultViewController: UIViewController {
 
     @IBOutlet weak var ExpandImageView: UIImageView!
     
+    // 受け取るためのプロパティ（変数）を宣言しておく
+    var index:Int = 0
+    
+    //写真3枚を格納する配列
+    let photo = [UIImage(named: "IMG_5961"),UIImage(named: "IMG_6757"),UIImage(named: "IMG_6267")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        ExpandImageView.image = photo[index]
+
     }
 
     override func didReceiveMemoryWarning() {

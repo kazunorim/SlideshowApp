@@ -14,6 +14,11 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBAction func onTapImage(_ sender: Any) {
+        // セグエを使用して画面を遷移
+        performSegue(withIdentifier: "result", sender: nil)
+    }
+    
     // タイマー用の時間のための変数
     var timer: Timer!
     var timer_sec: Int = 0
@@ -31,6 +36,9 @@ class ViewController: UIViewController {
         
         //最初は0枚目を表示しておく
         imageView.image = photograph[0]
+        
+        imageView.isUserInteractionEnabled = true
+       // imageView.addGestureRecognizer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,6 +131,24 @@ class ViewController: UIViewController {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //停止を押すと、タイマーの時間を0に
+        self.timer_sec = 0
+        self.timerLabel.text = String(format: "%d", self.timer_sec)
+        
+        if self.timer != nil {
+            self.timer.invalidate()
+            //現在のタイマーを破棄
+            self.timer = nil
+        }
+
+        // segueから遷移先のResultViewControllerを取得する
+        let resultViewController:ResultViewController = segue.destination as! ResultViewController
+        // 遷移先のResultViewControllerで宣言しているindexに値を代入して渡す
+        resultViewController.index = counter
+    }
+
+    
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
     }
 }
