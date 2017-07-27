@@ -58,9 +58,6 @@ class ViewController: UIViewController {
         }
     }
 
-    @IBAction func prevButton(_ sender: Any) {
-    }
-    
     @IBAction func playButton(_ sender: Any) {
         //タイマーの作成、始動
         //timeIntervalについて、更新用関数が1secごとに更新される
@@ -72,8 +69,46 @@ class ViewController: UIViewController {
             self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         }
     }
+
+    @IBAction func prevButton(_ sender: Any) {
+        //停止を押すと、タイマーの時間を0に
+        self.timer_sec = 0
+        self.timerLabel.text = String(format: "%d", self.timer_sec)
+        
+        if self.timer != nil {
+            self.timer.invalidate()
+            //現在のタイマーを破棄
+            self.timer = nil
+        }
+        
+        if(counter > 0) {
+            counter -= 1
+            imageView.image = photograph[counter]
+        }else{
+            counter = 2
+            imageView.image = photograph[counter]
+        }
+    }
+
     
     @IBAction func nextButton(_ sender: Any) {
+        //停止を押すと、タイマーの時間を0に
+        self.timer_sec = 0
+        self.timerLabel.text = String(format: "%d", self.timer_sec)
+        
+        if self.timer != nil {
+            self.timer.invalidate()
+            //現在のタイマーを破棄
+            self.timer = nil
+        }
+        
+        if(counter < 2) {
+            counter += 1
+            imageView.image = photograph[counter]
+        }else{
+            counter = 0
+            imageView.image = photograph[counter]
+        }
     }
     
     @IBAction func pauseButton(_ sender: Any) {
