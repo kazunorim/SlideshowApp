@@ -52,14 +52,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCm-p8-TuL">
-                                <rect key="frame" x="172" y="532" width="31" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="停止"/>
-                                <connections>
-                                    <action selector="pauseButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0eY-Bc-6Vd"/>
-                                </connections>
-                            </button>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hQr-Hu-wC2">
                                 <rect key="frame" x="67" y="168" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -79,7 +71,10 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="O9G-kh-FFV" id="AdO-4H-R4T"/>
+                        <outlet property="goButton" destination="cb4-oK-mUB" id="LYr-i0-bGH"/>
                         <outlet property="imageView" destination="hQr-Hu-wC2" id="Wt2-CX-jSk"/>
+                        <outlet property="playpauseButton" destination="MYN-Cq-Hd7" id="TTs-8i-TaB"/>
                         <outlet property="timerLabel" destination="BdW-bQ-C1r" id="n58-xm-Qqm"/>
                         <segue destination="lbd-mb-3g9" kind="show" identifier="result" id="3Oe-aj-fAm"/>
                     </connections>

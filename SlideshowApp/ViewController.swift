@@ -9,8 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var timerLabel: UILabel!
+    
+    @IBOutlet weak var playpauseButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var goButton: UIButton!
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -26,19 +30,17 @@ class ViewController: UIViewController {
     var temp = 0 //一時的に数値を格納する変数
     var counter: Int = 0 //写真のインデックス番号
     let second: Int = 2 // 次の写真を表示するまでの秒数
+    //var flag: Int = 0
     
     //写真3枚を格納する配列
     let photograph = [UIImage(named: "IMG_5961"),UIImage(named: "IMG_6757"),UIImage(named: "IMG_6267")]
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         //最初は0枚目を表示しておく
         imageView.image = photograph[0]
-        
-        imageView.isUserInteractionEnabled = true
-       // imageView.addGestureRecognizer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,7 +76,19 @@ class ViewController: UIViewController {
         //userinfoはtimerとして渡したい値
         //repeatは、trueとしているので、1びょうごとに呼び出される
         if self.timer == nil {
+            //再生する
             self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            playpauseButton.setTitle("停止", for: .normal)
+            backButton.isEnabled = false
+            goButton.isEnabled = false
+        }else{
+            //停止する
+            self.timer.invalidate()
+            //現在のタイマーを破棄
+            self.timer = nil
+            playpauseButton.setTitle("再生", for: .normal)
+            backButton.isEnabled = true
+            goButton.isEnabled = true
         }
     }
 
@@ -97,7 +111,6 @@ class ViewController: UIViewController {
             imageView.image = photograph[counter]
         }
     }
-
     
     @IBAction func nextButton(_ sender: Any) {
         //停止を押すと、タイマーの時間を0に
@@ -119,17 +132,17 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func pauseButton(_ sender: Any) {
+    //@IBAction func pauseButton(_ sender: Any) {
         //停止を押すと、タイマーの時間を0に
-        self.timer_sec = 0
-        self.timerLabel.text = String(format: "%d", self.timer_sec)
+      //  self.timer_sec = 0
+        //self.timerLabel.text = String(format: "%d", self.timer_sec)
         
-        if self.timer != nil {
-            self.timer.invalidate()
+       // if self.timer != nil {
+         //   self.timer.invalidate()
             //現在のタイマーを破棄
-            self.timer = nil
-        }
-    }
+           // self.timer = nil
+       // }
+   // }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //停止を押すと、タイマーの時間を0に
