@@ -21,6 +21,10 @@ class ViewController: UIViewController {
     @IBAction func onTapImage(_ sender: Any) {
         // セグエを使用して画面を遷移
         performSegue(withIdentifier: "result", sender: nil)
+        
+        playpauseButton.setTitle("再生", for: .normal)
+        backButton.isEnabled = true
+        goButton.isEnabled = true
     }
     
     // タイマー用の時間のための変数
@@ -30,7 +34,6 @@ class ViewController: UIViewController {
     var temp = 0 //一時的に数値を格納する変数
     var counter: Int = 0 //写真のインデックス番号
     let second: Int = 2 // 次の写真を表示するまでの秒数
-    //var flag: Int = 0
     
     //写真3枚を格納する配列
     let photograph = [UIImage(named: "IMG_5961"),UIImage(named: "IMG_6757"),UIImage(named: "IMG_6267")]
